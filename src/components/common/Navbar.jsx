@@ -19,6 +19,12 @@ const Navbar = () => {
         setNavigationRoutes(tempRoutes);
     }
 
+    const handleMobileSubrouteClick = (index) => {
+        let tempRoutes = [...navigationRoutes];
+        tempRoutes[index].dropdown = !tempRoutes[index].dropdown;
+        setNavigationRoutes(tempRoutes);
+    }
+
     return (
         <nav className="bg-white shadow-md">
             <div className="max-w-7xl mx-auto px-4">
@@ -86,11 +92,7 @@ const Navbar = () => {
                             route.subroutes ? (
                                 <div key={index} className="px-4">
                                     <button
-                                        onClick={() => {
-                                            const newDropdownStates = [...navigationRoutes];
-                                            newDropdownStates[index].dropdown = !newDropdownStates[index].dropdown;
-                                            setNavigationRoutes(newDropdownStates);
-                                        }}
+                                        onClick={() => handleMobileSubrouteClick(index)}
                                         className="flex items-center w-full py-2 font-semibold"
                                     >
                                         {route.name}
