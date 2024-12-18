@@ -15,8 +15,14 @@ A modern web application for managing patient registrations in healthcare facili
 The application follows a modular architecture:
 
 - `src/lib/store`: Redux store configuration and slices
+- `src/utils`: Helper functions, constants, and validation schemas
+  - `constants`: Application-wide constants like form configurations
+  - `validations`: Zod validation schemas for forms
+  - `helpers`: Utility functions and helper methods
 - `src/components`: Reusable React components
+- `src/pages`: Top-level page components and routing
 - `src/App.jsx`: Main application component
+
 
 ## Development Approach
 
