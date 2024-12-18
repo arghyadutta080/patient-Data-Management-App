@@ -6,10 +6,11 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { patientRegistrationSchema } from '../../utils/validations/patientRegistration'
 import { updatePatientForm } from '../../lib/store/slices/patientRegistrationSlice'
+import toast from 'react-hot-toast'
 
 const StepperForm = () => {
   const [activeStep, setActiveStep] = useState(0)
-  const [activeTab, setActiveTab] = useState(0)
+  const [activeTab, setActiveTab] = useState(0)   // For sub-steps
   const steps = STEPS
 
   const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const StepperForm = () => {
 
 
   const handleNext = () => {
-    if (steps[activeStep].subSteps) {
+    if (steps[activeStep]?.subSteps) {
       // If we're in the step, which has substeps
       if (activeTab < steps[activeStep].subSteps.length - 1) {    // If there are more sub-steps, go to next sub-step
         setActiveTab(prev => prev + 1)
@@ -36,6 +37,27 @@ const StepperForm = () => {
     } else if (activeStep < steps.length - 1) {
       // For other main steps, just move to next step
       setActiveStep(prev => prev + 1)
+    }
+  }
+
+  const handleNextButtonClick = () => {
+    if (steps[activeStep]) {
+      if (steps[activeStep]?.subSteps) {
+        if (!steps[activeStep]?.subSteps[activeTab]?.sections) return handleNext()
+      } else {
+        handleNext()
+      }
+    }
+  }
+
+  const handlenextButtonType = () => {
+    if (steps[activeStep]) {
+      if (steps[activeStep]?.subSteps) {
+        if (steps[activeStep]?.subSteps[activeTab]?.sections) return 'submit'
+        else return 'button'
+      } else {
+        return 'button'
+      }
     }
   }
 
@@ -63,16 +85,20 @@ const StepperForm = () => {
   }
 
 
-  const onSubmit = async (formData) => {
-    console.log("onSubmit", formData)
+  const onSubmit = (formData) => {
     try {
-      console.log(formData, patientRegistrationDetails)
-      dispatch(updatePatientForm(formData))
+      dispatch(updatePatientForm({
+        ...formData
+      }))
+      // console.log("After dispatch", formData, patientRegistrationDetails)
       handleNext()
-      console.log(formData, patientRegistrationDetails)
     } catch (error) {
       console.error('Error updating patient form:', error)
     }
+  }
+
+  const handleSubmitButtonClick = () => {
+    toast.success('All data has been submitted successfully!')
   }
 
   const buttonGroup = () => {
@@ -89,13 +115,26 @@ const StepperForm = () => {
               Back
             </button>
           )}
-          <button
-            type="submit"
-            disabled={isLastStep}
-            className="px-6 py-2 bg-olive-600 text-white rounded hover:bg-olive-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-          >
-            {isLastStep && isLastSubStep ? 'Submit' : 'Save & Next'}
-          </button>
+          {
+            isLastStep && isLastSubStep ?
+              <button
+                onClick={handleSubmitButtonClick}
+                type="button"
+                disabled={!isLastStep && !isLastSubStep}
+                className="px-6 py-2 bg-olive-600 text-white rounded hover:bg-olive-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+              >
+                Submit
+              </button>
+              :
+              <button
+                onClick={handleNextButtonClick}
+                type={handlenextButtonType()}
+                disabled={!isLastStep && !isLastSubStep}
+                className="px-6 py-2 bg-olive-600 text-white rounded hover:bg-olive-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+              >
+                Save & Next
+              </button>
+          }
         </div>
       </>
     )
@@ -166,7 +205,7 @@ const StepperForm = () => {
         ))}
       </div>
 
-      {/* Tabs - Only show for Patient Details step */}
+      {/* Tabs - Only show for Sub-steps */}
       {steps[activeStep]?.subSteps && (
         <div className="flex border-b justify-center">
           {steps[activeStep].subSteps.map((tab, index) => (
