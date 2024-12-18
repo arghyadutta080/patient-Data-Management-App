@@ -7,70 +7,79 @@ export const STEPS = [
                 number: 1,
                 label: 'Basic Information',
                 sections: [
-                    {   
+                    {
                         id: 'patiend-basic-personal-info',
                         label: 'Personal Information',
                         fields: [
                             {
-                                number: 1,
                                 label: 'First Name',
                                 name: 'firstName',
                                 type: 'text',
                                 required: true,
                             },
                             {
-                                number: 2,
                                 label: 'Last Name',
                                 name: 'lastName',
                                 type: 'text',
                                 required: false,
                             },
                             {
-                                number: 3,
                                 label: 'Date of Birth',
                                 name: 'dateOfBirth',
                                 type: 'date',
                                 required: true,
                             },
                             {
-                                number: 4,
+                                label: 'Time of Birth',
+                                name: 'timeOfBirth',
+                                type: 'time',
+                                required: false,
+                            },
+                            {
+                                label: 'Age',
+                                name: 'age',
+                                type: 'number',
+                                required: true,
+                            },
+                            {
                                 label: 'Gender',
                                 name: 'gender',
-                                type: 'select',
+                                type: 'radio',
                                 options: ['Male', 'Female', 'Other'],
                                 required: true,
                             },
                             {
-                                number: 5,
-                                label: 'Phone Number',
-                                name: 'phoneNumber',
+                                label: 'Guardian Name',
+                                name: 'guardianName',
                                 type: 'text',
-                                required: true,
+                                required: false,
                             },
                             {
-                                number: 6,
                                 label: 'Email',
                                 name: 'email',
                                 type: 'email',
                                 required: false,
                             },
                             {
-                                number: 7,
-                                label: 'Address',
-                                name: 'address',
+                                label: 'Phone Number',
+                                name: 'phoneNumber',
+                                type: 'text',
+                                required: true,
+                            },
+                            {
+                                label: 'Alternate Phone Number',
+                                name: 'alternatePhoneNumber',
                                 type: 'text',
                                 required: false,
                             },
                             {
-                                number: 8,
-                                label: 'City',
-                                name: 'city',
+                                label: 'Country',
+                                name: 'country',
                                 type: 'select',
-                                options: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'],
+                                options: ['India', 'Pakistan', 'Bangladesh', ''],
                                 required: false,
                             },
                             {
-                                number: 9,
                                 label: 'State',
                                 name: 'state',
                                 type: 'select',
@@ -78,11 +87,23 @@ export const STEPS = [
                                 required: false,
                             },
                             {
-                                number: 10,
                                 label: 'District',
                                 name: 'district',
                                 type: 'select',
                                 options: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'],
+                                required: false,
+                            },
+                            {
+                                label: 'City',
+                                name: 'city',
+                                type: 'select',
+                                options: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'],
+                                required: false,
+                            },
+                            {
+                                label: 'Address',
+                                name: 'address',
+                                type: 'text',
                                 required: false,
                             },
                         ]
@@ -92,7 +113,6 @@ export const STEPS = [
                         label: 'Referral Information',
                         fields: [
                             {
-                                id: 1,
                                 label: 'How did you hear about us?',
                                 type: 'select',
                                 name: 'howDidYouKnow',
@@ -100,7 +120,6 @@ export const STEPS = [
                                 required: false,
                             },
                             {
-                                id: 2,
                                 label: 'Refer from',
                                 type: 'text',
                                 name: 'referredBy',
@@ -113,11 +132,17 @@ export const STEPS = [
                         label: 'Admission Type',
                         fields: [
                             {
-                                number: 1,
-                                label: '',  
-                                type: 'select',
+                                label: '',
+                                type: 'radio',
                                 name: 'admissionType',
                                 options: ['Voluntary', 'Involuntary'],
+                                required: false,
+                            },
+                            {
+                                label: '',
+                                type: 'select',
+                                name: 'admittedBy',
+                                options: ['Bought by family', 'Bought by self', 'Referred by doctor', 'Referred by friend', 'Referred by relative', 'Referred by other'],
                                 required: false,
                             }
                         ]

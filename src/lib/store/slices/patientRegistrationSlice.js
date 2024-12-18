@@ -6,10 +6,15 @@ const initialState = {
     firstName: '',
     lastName: '',
     dateOfBirth: '',
+    age: '',
+    timeOfBirth: '',
     gender: '',
+    guardianName: '',
     phoneNumber: '', 
+    alternatePhoneNumber: '',
     email: '',
     address: '',
+    country: '',
     city: '',
     state: '',
     district: '',
@@ -19,7 +24,8 @@ const initialState = {
     referredBy: '',
 
     // Admission Type section
-    admissionType: ''
+    admissionType: '',
+    admittedBy: '',
   }
 }
 
