@@ -40,6 +40,7 @@ const StepperForm = () => {
     }
   }
 
+  // decides whether to go to next step or not
   const handleNextButtonClick = () => {
     if (steps[activeStep]) {
       if (steps[activeStep]?.subSteps) {
@@ -50,6 +51,7 @@ const StepperForm = () => {
     }
   }
 
+  // decides whether to act as submit or button type
   const handlenextButtonType = () => {
     if (steps[activeStep]) {
       if (steps[activeStep]?.subSteps) {
@@ -78,6 +80,7 @@ const StepperForm = () => {
   }
 
   const isLastStep = activeStep === steps.length - 1
+  
   const isLastSubStep = () => {
     if (!steps[activeStep].subSteps) return true;
     else if (steps[activeStep].subSteps && activeTab === steps[activeStep].subSteps.length - 1) return true
@@ -103,6 +106,7 @@ const StepperForm = () => {
     // TODO: Add API call to submit all data
     toast.success('All data has been submitted successfully!')
   }
+
 
   const buttonGroup = () => {
     return (
@@ -184,8 +188,8 @@ const StepperForm = () => {
     )
   }
 
-  return (
 
+  return (
     <div className="max-w-8xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-normal text-center mb-8">Register a new patient</h1>
 

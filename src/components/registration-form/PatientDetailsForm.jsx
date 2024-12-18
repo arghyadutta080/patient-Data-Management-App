@@ -6,7 +6,7 @@ const PatientDetailsForm = ({ section, register, errors }) => {
         <div className="grid grid-cols-4 gap-6 w-full px-6">
             {
                 section.fields.map((field, index) => (
-                    field.type === 'text' || field.type === 'date' || field.type === 'time' || field.type === 'email' || field.type === 'number' ? (
+                    ['text', 'date', 'time', 'email', 'number'].includes(field.type) ? (
                         <div key={index} className="flex flex-col">
                             <label className="block text-sm font-medium text-gray-600 mb-1">{field.label}{field.required && '*'}</label>
                             <input
