@@ -186,7 +186,7 @@ const StepperForm = () => {
             <div className={`flex items-center justify-center w-8 h-8 rounded-full 
                 ${index <= activeStep
                 ? 'bg-olive-600 text-white'
-                : 'bg-gray-200 text-gray-500'}`}>
+                : 'bg-gray-300 text-gray-700'}`}>
               {step.number}
             </div>
 
@@ -199,33 +199,37 @@ const StepperForm = () => {
 
             {index < steps.length - 1 && (
               <div className={`w-24 h-[1px] mx-4
-                  ${index < activeStep ? 'bg-olive-600' : 'bg-gray-200'}`} />
+                  ${index < activeStep ? 'bg-olive-600' : 'bg-gray-300'}`} />
             )}
           </div>
         ))}
       </div>
 
-      {/* Tabs - Only show for Sub-steps */}
-      {steps[activeStep]?.subSteps && (
-        <div className="flex border-b justify-center">
-          {steps[activeStep].subSteps.map((tab, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={`px-8 py-2 text-sm font-medium 
-                  ${index === activeTab
-                  ? 'border-b-2 border-olive-600 text-olive-600'
-                  : 'text-gray-500'}`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      )}
-
       {/* Content Area */}
-      <div className="mt-8 min-h-[300px]">
-        {renderContent()}
+      <div className="max-w-8xl mx-auto px-8 py-8 border-2 border-gray-200 rounded-3xl bg-white">
+
+        {/* Tabs - Only show for Sub-steps */}
+        {steps[activeStep]?.subSteps && (
+          <div className="flex border-b mx-10 justify-center">
+            {steps[activeStep].subSteps.map((tab, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(index)}
+                className={`px-8 py-2 text-sm font-medium 
+                  ${index === activeTab
+                    ? 'border-b-2 border-olive-600 text-olive-600'
+                    : 'text-gray-500'}`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Step & Sub-step Content */}
+        <div className="mt-8 min-h-[300px]">
+          {renderContent()}
+        </div>
       </div>
     </div>
   )
