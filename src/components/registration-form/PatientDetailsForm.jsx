@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 const PatientDetailsForm = ({ section, register, errors }) => {
 
     return (
-        <div className="grid grid-cols-4 gap-6 w-full px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full md:px-6">
             {
                 section.fields.map((field, index) => (
                     ['text', 'date', 'time', 'email', 'number'].includes(field.type) ? (

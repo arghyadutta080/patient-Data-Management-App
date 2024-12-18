@@ -80,7 +80,7 @@ const StepperForm = () => {
   }
 
   const isLastStep = activeStep === steps.length - 1
-  
+
   const isLastSubStep = () => {
     if (!steps[activeStep].subSteps) return true;
     else if (steps[activeStep].subSteps && activeTab === steps[activeStep].subSteps.length - 1) return true
@@ -112,7 +112,7 @@ const StepperForm = () => {
     return (
       <>
         {/* Navigation Buttons */}
-        <div className="flex justify-end gap-4 mt-8">
+        <div className="flex flex-col md:flex-row justify-end gap-4 mt-8">
           {(activeStep > 0 || activeTab > 0) && (
             <button
               type="button"
@@ -191,7 +191,7 @@ const StepperForm = () => {
 
   return (
     <div className="max-w-8xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-normal text-center mb-8">Register a new patient</h1>
+      <h1 className="text-2xl font-normal md:text-3xl md:font-medium text-center mb-8">Register a new patient</h1>
 
       {/* Stepper */}
       <div className="flex items-center justify-center mb-12">
@@ -204,7 +204,7 @@ const StepperForm = () => {
               {step.number}
             </div>
 
-            <span className={`ml-2 text-sm 
+            <span className={`ml-2 text-sm hidden md:block
                 ${index <= activeStep
                 ? 'text-olive-600'
                 : 'text-gray-500'}`}>
@@ -231,8 +231,8 @@ const StepperForm = () => {
                 onClick={() => setActiveTab(index)}
                 className={`px-8 py-2 text-sm font-medium 
                   ${index === activeTab
-                    ? 'border-b-2 border-olive-600 text-olive-600'
-                    : 'text-gray-500'}`}
+                    ? 'border-b-2 border-olive-600 text-olive-600 '
+                    : 'text-gray-500 hidden md:block'}`}
               >
                 {tab.label}
               </button>
