@@ -85,19 +85,22 @@ const StepperForm = () => {
   }
 
 
-  const onSubmit = (formData) => {
+  const onSubmit = (formData, event) => {
     try {
       dispatch(updatePatientForm({
         ...formData
       }))
-      // console.log("After dispatch", formData, patientRegistrationDetails)
-      handleNext()
+      if (event?.nativeEvent?.submitter?.innerText === 'Save & Next') {
+        handleNext()
+      }
+      toast.success('Data has been saved successfully!')
     } catch (error) {
       console.error('Error updating patient form:', error)
     }
   }
 
   const handleSubmitButtonClick = () => {
+    // TODO: Add API call to submit all data
     toast.success('All data has been submitted successfully!')
   }
 
@@ -115,6 +118,13 @@ const StepperForm = () => {
               Back
             </button>
           )}
+          <button
+            type="button"
+            onClick={onSubmit}
+            className="px-6 py-2 bg-olive-600 text-white rounded hover:bg-olive-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+          >
+            Save
+          </button>
           {
             isLastStep && isLastSubStep ?
               <button
