@@ -17,7 +17,7 @@ The application follows a modular architecture:
 - `src/lib/store`: Redux store configuration and slices
 - `src/utils`: Helper functions, constants, and validation schemas
   - `constants`: Application-wide constants like form configurations
-  - `validations`: Zod validation schemas for forms
+  - `validations`: Zod validation schemas for forms along with react-hook-form
   - `helpers`: Utility functions and helper methods
 - `src/components`: Reusable React components
 - `src/pages`: Top-level page components and routing
